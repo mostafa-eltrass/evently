@@ -41,14 +41,14 @@ class _ProfileTabState extends State<ProfileTab> {
             
             ),
           ),
-          SizedBox(width: width*0.15,),
+          SizedBox(width: width*0.1,),
           Column(
             children: [
               Text('Mostafa ',
           style: AppStyles.bold24White,
           ),
            SizedBox(height: height*0.02,),
-          Text(' Eltrassmostafa@gmail.com', 
+          Text('mostafa@gmail.com', 
           style: AppStyles.bold14White,
           ),
             ],
