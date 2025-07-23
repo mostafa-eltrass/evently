@@ -59,4 +59,46 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get onboardDesc3 =>
       'اجعل كل فعالية لا تُنسى بمشاركتها مع الآخرين. تتيح لك منصتنا دعوة الأصدقاء، وإبقاء الجميع على اطلاع، والاحتفال معًا. التقط اللحظات وشاركها مع شبكتك لتتمكن من استعادة الذكريات وتقدير اللحظات الجميلة.';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get sport => 'رياضة';
+
+  @override
+  String get birthday => 'عيد ميلاد';
+
+  @override
+  String get meeting => 'اجتماع';
+
+  @override
+  String get gaming => 'ألعاب';
+
+  @override
+  String get workshop => 'ورشة';
+
+  @override
+  String get bookClub => 'نادي كتاب';
+
+  @override
+  String get exhibition => 'معرض';
+
+  @override
+  String get holiday => 'عطلة';
+
+  @override
+  String get eating => 'أكل';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get map => 'الخريطة';
+
+  @override
+  String get favorite => 'المفضلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
 }

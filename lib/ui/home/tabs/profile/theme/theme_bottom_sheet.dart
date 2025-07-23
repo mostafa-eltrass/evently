@@ -1,71 +1,53 @@
 import 'package:evently/providers/app_theme_provider.dart';
 import 'package:evently/utils/app_colors.dart';
-import 'package:evently/utils/app_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:evently/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
- 
+import 'package:evently/gen_l10n/app_localizations.dart';
 
-class ThemeBottomSheet extends StatefulWidget {
-  const ThemeBottomSheet({super.key});
-
-  @override
-  State<ThemeBottomSheet> createState() => _LanguageBottomSheetState();
-}
-
-class _LanguageBottomSheetState extends State<ThemeBottomSheet> {
+class ThemeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-     
-    var themeProvider = Provider.of<AppThemeProvider>(context);
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: height * 0.04,
-        horizontal: width * 0.04,
+    final themeProvider = Provider.of<AppThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode();
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          InkWell(
-            onTap: () {
-              themeProvider.changeTheme( ThemeMode.dark);
-            },
-            child:  themeProvider.isDarkMode()?
-            getSelectedThemeItem(textTheme:   AppLocalizations.of(context)!.dark )
-           : getUnSelectedThemeItem(textTheme: AppLocalizations.of(context)!.dark)
+          Text(
+            AppLocalizations.of(context)!.theme,
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
-          SizedBox(height: height * 0.01),
-          InkWell(
+          const SizedBox(height: 16),
+
+          // Light Mode
+          ListTile(
+            leading: Icon(Icons.light_mode,
+                color: !isDark ? AppColors.primaryLight : Colors.grey),
+            title: Text(AppLocalizations.of(context)!.light),
             onTap: () {
-               themeProvider.changeTheme( ThemeMode.light);
+              themeProvider.changeTheme(ThemeMode.light);
+              Navigator.pop(context);
             },
-            child: themeProvider.isDarkMode()?
-            getUnSelectedThemeItem(textTheme: AppLocalizations.of(context)!.light):
-            getSelectedThemeItem(textTheme: AppLocalizations.of(context)!.light)
+          ),
+
+          // Dark Mode
+          ListTile(
+            leading: Icon(Icons.dark_mode,
+                color: isDark ? AppColors.primaryLight : Colors.grey),
+            title: Text(AppLocalizations.of(context)!.dark),
+            onTap: () {
+              themeProvider.changeTheme(ThemeMode.dark);
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
     );
-  }
-
-  Widget getSelectedThemeItem( {required  String textTheme}){
-    return  Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(textTheme
-                   ,
-                  style: AppStyles.bold20Primary,
-                ),
-                Icon(Icons.check, color: AppColors.primaryLight, size: 35),
-              ],
-            );
-  }
-  Widget getUnSelectedThemeItem({required  String textTheme}){
-    return Text(
-              textTheme,
-              style: AppStyles.bold20Black,
-            );
   }
 }

@@ -5,17 +5,59 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.whiteBgColor,
-     textTheme: TextTheme(
+    primaryColor: AppColors.primaryLight,
+    textTheme: TextTheme(
       headlineLarge: AppStyles.bold20Black,
-      headlineMedium: AppStyles.bold20Primary
-     )
-  );
+      headlineMedium: AppStyles.bold20Primary,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.transparentColor,
+      type: BottomNavigationBarType.fixed,
+      elevation: 0,
+      selectedItemColor: AppColors.whiteColor,
+      unselectedItemColor: AppColors.whiteColor,
+      showSelectedLabels: true,
+      selectedLabelStyle: AppStyles.bold12White,
+      unselectedLabelStyle: AppStyles.bold12White,
+    ),
+   floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: AppColors.primaryLight,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+      side: BorderSide(
+        color: AppColors.whiteColor,
+        width: 4
+      )
+    )
+  )
+  ); // ← هنا كان ناقص القوس ده
 
   static final ThemeData darkTheme = ThemeData(
-     scaffoldBackgroundColor: AppColors.primaryDark,
+    scaffoldBackgroundColor: AppColors.primaryDark,
+    primaryColor: AppColors.primaryDark,
     textTheme: TextTheme(
       headlineLarge: AppStyles.bold20White,
-      headlineMedium: AppStyles.bold20White
-     )
+      headlineMedium: AppStyles.bold20White,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.transparentColor,
+      type: BottomNavigationBarType.fixed,
+      elevation: 0,
+      selectedItemColor: AppColors.whiteColor,
+      unselectedItemColor: AppColors.whiteColor,
+      showSelectedLabels: true,
+      selectedLabelStyle: AppStyles.bold12White,
+      unselectedLabelStyle: AppStyles.bold12White,
+    ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: AppColors.primaryDark,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+      side: BorderSide(
+        color: AppColors.whiteColor,
+        width: 4
+      )
+    )
+  )
   );
 }
