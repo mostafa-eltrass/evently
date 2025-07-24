@@ -101,4 +101,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get welcomeBack => 'مرحبًا بعودتك ✨';
+
+  @override
+  String location(Object city, Object country) {
+    return '$city، $country';
+  }
 }

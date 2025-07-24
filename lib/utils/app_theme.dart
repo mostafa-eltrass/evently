@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
+     focusColor: AppColors.whiteColor,
     scaffoldBackgroundColor: AppColors.whiteBgColor,
     primaryColor: AppColors.primaryLight,
     textTheme: TextTheme(
       headlineLarge: AppStyles.bold20Black,
-      headlineMedium: AppStyles.bold20Primary,
+      headlineMedium: AppStyles.medium16Primary,
+      headlineSmall:  AppStyles.medium16White,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.transparentColor,
@@ -30,14 +32,20 @@ class AppTheme {
       )
     )
   )
-  ); // ← هنا كان ناقص القوس ده
+ , appBarTheme: AppBarTheme(
+   backgroundColor: AppColors.primaryLight
+    )
+  ); 
 
   static final ThemeData darkTheme = ThemeData(
+
+    focusColor: AppColors.primaryLight,
     scaffoldBackgroundColor: AppColors.primaryDark,
     primaryColor: AppColors.primaryDark,
     textTheme: TextTheme(
       headlineLarge: AppStyles.bold20White,
-      headlineMedium: AppStyles.bold20White,
+      headlineMedium: AppStyles.medium16White,
+      headlineSmall:  AppStyles.medium16White,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.transparentColor,
@@ -59,5 +67,8 @@ class AppTheme {
       )
     )
   )
+   , appBarTheme: AppBarTheme(
+   backgroundColor: AppColors.primaryDark
+    )
   );
 }

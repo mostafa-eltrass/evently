@@ -31,7 +31,11 @@
   "home": "Home",
   "map": "Map",
   "favorite": "Favorite",
-  "profile": "Profile"
+  "profile": "Profile",
+  "welcomeBack": "Welcome Back ✨",
+  "location": "{city}, {country}"
+ 
+
 }
 
 

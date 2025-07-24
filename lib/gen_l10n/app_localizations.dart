@@ -277,6 +277,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back ✨'**
+  String get welcomeBack;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'{city}, {country}'**
+  String location(Object city, Object country);
 }
 
 class _AppLocalizationsDelegate

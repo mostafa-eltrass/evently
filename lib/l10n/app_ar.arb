@@ -30,7 +30,11 @@
   "home": "الرئيسية",
   "map": "الخريطة",
   "favorite": "المفضلة",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "welcomeBack": "مرحبًا بعودتك ✨",
+  "location": "{city}، {country}"
+ 
+
 }
 
 
