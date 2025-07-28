@@ -4,6 +4,7 @@ class AppAssets {
   static const String splashScreenNight = 'assets/images/splash_screen_night.png';
 
   static const String logo = 'assets/images/logo.png';
+  static const String logo1 = 'assets/images/logo1.png';
   static const String logoTop = 'assets/images/logo_top.png';
 
   static const String introHeader = 'assets/images/intro_header.png';
@@ -40,5 +41,7 @@ class AppAssets {
   static const String workshopImage = 'assets/images/workshop_image.png';
   static const String meetingImage = 'assets/images/meeting_image.png';
   static const String routeImage = 'assets/images/route_image.png';
+  static const String iconGoogal = 'assets/images/icon_googal.png';
+
 
 }

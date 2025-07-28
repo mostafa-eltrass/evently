@@ -32,10 +32,40 @@
   "favorite": "المفضلة",
   "profile": "الملف الشخصي",
   "welcomeBack": "مرحبًا بعودتك ✨",
-  "location": "{city}، {country}"
+  "location": "{city}، {country}",
+   "ocation" : "الموقع",
+  "searchEvent": "ابحث عن فعالية",
+  
+  "name": "الاسم",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "rePassword": "تأكيد كلمة المرور",
+  
+  "forgetPassword": "هل نسيت كلمة المرور؟",
+  "login": "تسجيل الدخول",
+  "dontHaveAccount": "ليس لديك حساب؟",
+  "createAccount": "أنشئ حساب",
+  "or": "أو",
+  "loginWithGoogle": "تسجيل الدخول بواسطة جوجل",
+    "register": "تسجيل",
+     "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+  "createEvent": "إنشاء فعالية",
  
-
+  "title": "العنوان",
+  "eventTitle": "عنوان الفعالية",
+  "description": "الوصف",
+  "eventDescription": "وصف الفعالية",
+  "eventDate": "تاريخ الفعالية",
+  "chooseDate": "اختر التاريخ",
+  "eventTime": "وقت الفعالية",
+  "chooseTime": "اختر الوقت",
+  "chooseEventLocation": "اختر موقع الفعالية",
+  "addEvent": "إضافة الفعالية"
 }
+
+
+
+ 
 
 
 

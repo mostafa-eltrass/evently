@@ -4,6 +4,7 @@ import 'package:evently/providers/app_theme_provider.dart';
 
 import 'package:evently/ui/home/tabs/profile/language/language_bottom_sheet.dart';
 import 'package:evently/ui/home/tabs/profile/theme/theme_bottom_sheet.dart';
+import 'package:evently/ui/home/tabs/widget/custom_elevated_buttom.dart';
 import 'package:evently/utils/app_assets.dart';
 import 'package:evently/utils/app_colors.dart';
 import 'package:evently/utils/app_styles.dart';
@@ -63,7 +64,7 @@ class _ProfileTabState extends State<ProfileTab> {
           horizontal: width * 0.08,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               AppLocalizations.of(context)!.language,
@@ -131,7 +132,42 @@ class _ProfileTabState extends State<ProfileTab> {
               ),
             ),
          Spacer(),
-         ElevatedButton(
+          CustomElevatedButton(
+            backgrounColor: AppColors.redColor,
+            borderColor: AppColors.redColor,
+            onPressed:  (){
+
+          }, 
+          icon: true,
+          
+          iconImage: Padding(
+            padding:   EdgeInsets.symmetric(horizontal: width*0.02),
+            child: Icon(Icons.logout, color: AppColors.whiteColor,size: 30,),
+          ),
+          text:  AppLocalizations.of(context)!.logout,
+               
+                )
+          ],
+        ),
+      ),
+    );
+  }
+
+  void showThemeBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => ThemeBottomSheet(),
+    );
+  }
+  void showLanguageBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => LanguageBottomSheet(),
+    );
+  }
+}
+/*
+ ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.redColor,
             shape: RoundedRectangleBorder(
@@ -154,22 +190,4 @@ class _ProfileTabState extends State<ProfileTab> {
             ],
           )
          )
-          ],
-        ),
-      ),
-    );
-  }
-
-  void showThemeBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => ThemeBottomSheet(),
-    );
-  }
-  void showLanguageBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => LanguageBottomSheet(),
-    );
-  }
-}
+*/

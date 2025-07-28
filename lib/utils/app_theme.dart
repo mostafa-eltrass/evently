@@ -33,7 +33,7 @@ class AppTheme {
     )
   )
  , appBarTheme: AppBarTheme(
-   backgroundColor: AppColors.primaryLight
+    
     )
   ); 
 
@@ -68,7 +68,7 @@ class AppTheme {
     )
   )
    , appBarTheme: AppBarTheme(
-   backgroundColor: AppColors.primaryDark
+    
     )
   );
 }

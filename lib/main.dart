@@ -1,8 +1,12 @@
 import 'package:evently/gen_l10n/app_localizations.dart';
 import 'package:evently/providers/app_language_provider.dart';
 import 'package:evently/providers/app_theme_provider.dart';
+import 'package:evently/ui/auth/login/login_screen.dart';
+import 'package:evently/ui/auth/register/register_screen.dart';
 import 'package:evently/ui/home/Personalize_Screen.dart';
+import 'package:evently/ui/home/add_event/add_event.dart';
 import 'package:evently/ui/home/home_screen%20.dart';
+import 'package:evently/utils/app_routes.dart';
 import 'package:evently/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +33,14 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.addEventRouteName,
+      routes: {
+        AppRoutes.homeRouteName: (context)=>  HomeScreen(),
+        AppRoutes.loginRouteName: (context)=> LoginScreen(),
+        AppRoutes.registerRouteName: (context)=> RegisterScreen(),
+         AppRoutes.addEventRouteName: (context)=> AddEvent(),
+
+      },
       locale: Locale(languageProvider.appLanguage),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

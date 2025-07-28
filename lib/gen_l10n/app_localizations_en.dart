@@ -109,4 +109,79 @@ class AppLocalizationsEn extends AppLocalizations {
   String location(Object city, Object country) {
     return '$city, $country';
   }
+
+  @override
+  String get searchEvent => 'Search for event';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get rePassword => 'Re-password';
+
+  @override
+  String get forgetPassword => 'Forget Password?';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get dontHaveAccount => 'Don\'t Have Account?';
+
+  @override
+  String get createAccount => 'Create Account';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get loginWithGoogle => 'Login With Google';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account?';
+
+  @override
+  String get createEvent => 'Create Event';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get eventTitle => 'Event Title';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get eventDescription => 'Event Description';
+
+  @override
+  String get eventDate => 'Event Date';
+
+  @override
+  String get chooseDate => 'Choose Date';
+
+  @override
+  String get eventTime => 'Event Time';
+
+  @override
+  String get chooseTime => 'Choose Time';
+
+  @override
+  String get ocation => 'Location';
+
+  @override
+  String get chooseEventLocation => 'Choose Event Location';
+
+  @override
+  String get addEvent => 'Add Event';
 }

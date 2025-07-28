@@ -33,10 +33,43 @@
   "favorite": "Favorite",
   "profile": "Profile",
   "welcomeBack": "Welcome Back ✨",
-  "location": "{city}, {country}"
+  "location": "{city}, {country}",
+
+  "searchEvent": "Search for event",
+  
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "rePassword": "Re-password",
+  "forgetPassword": "Forget Password?",
+  "login": "Login",
+  "dontHaveAccount": "Don't Have Account?",
+  "createAccount": "Create Account",
+  "or": "Or",
+  "loginWithGoogle": "Login With Google",
+  "register": "Register",
+  "alreadyHaveAccount": "Already have an account?",
+   
+  "createEvent": "Create Event",
+  "title": "Title",
+  "eventTitle": "Event Title",
+  "description": "Description",
+  "eventDescription": "Event Description",
+  "eventDate": "Event Date",
+  "chooseDate": "Choose Date",
+  "eventTime": "Event Time",
+  "chooseTime": "Choose Time",
+    "ocation" : "Location",
+  "chooseEventLocation": "Choose Event Location",
+  "addEvent": "Add Event"
+}
+
  
 
-}
+
+
+
+
 
 
 

@@ -109,4 +109,79 @@ class AppLocalizationsAr extends AppLocalizations {
   String location(Object city, Object country) {
     return '$city، $country';
   }
+
+  @override
+  String get searchEvent => 'ابحث عن فعالية';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get rePassword => 'تأكيد كلمة المرور';
+
+  @override
+  String get forgetPassword => 'هل نسيت كلمة المرور؟';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get dontHaveAccount => 'ليس لديك حساب؟';
+
+  @override
+  String get createAccount => 'أنشئ حساب';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get loginWithGoogle => 'تسجيل الدخول بواسطة جوجل';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟';
+
+  @override
+  String get createEvent => 'إنشاء فعالية';
+
+  @override
+  String get title => 'العنوان';
+
+  @override
+  String get eventTitle => 'عنوان الفعالية';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get eventDescription => 'وصف الفعالية';
+
+  @override
+  String get eventDate => 'تاريخ الفعالية';
+
+  @override
+  String get chooseDate => 'اختر التاريخ';
+
+  @override
+  String get eventTime => 'وقت الفعالية';
+
+  @override
+  String get chooseTime => 'اختر الوقت';
+
+  @override
+  String get ocation => 'الموقع';
+
+  @override
+  String get chooseEventLocation => 'اختر موقع الفعالية';
+
+  @override
+  String get addEvent => 'إضافة الفعالية';
 }
