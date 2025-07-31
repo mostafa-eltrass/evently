@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
      focusColor: AppColors.whiteColor,
+     dividerColor: AppColors.blackColor,
     scaffoldBackgroundColor: AppColors.whiteBgColor,
     primaryColor: AppColors.primaryLight,
     textTheme: TextTheme(
       headlineLarge: AppStyles.bold20Black,
       headlineMedium: AppStyles.medium16Primary,
       headlineSmall:  AppStyles.medium16White,
+      titleLarge: AppStyles.medium16Black
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.transparentColor,
@@ -42,10 +44,12 @@ class AppTheme {
     focusColor: AppColors.primaryLight,
     scaffoldBackgroundColor: AppColors.primaryDark,
     primaryColor: AppColors.primaryDark,
+    dividerColor: AppColors.whiteColor,
     textTheme: TextTheme(
       headlineLarge: AppStyles.bold20White,
       headlineMedium: AppStyles.medium16White,
       headlineSmall:  AppStyles.medium16White,
+      titleLarge: AppStyles.medium16White
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.transparentColor,

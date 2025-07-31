@@ -40,7 +40,7 @@
   "email": "البريد الإلكتروني",
   "password": "كلمة المرور",
   "rePassword": "تأكيد كلمة المرور",
-  
+  "notFoundEvent": "لا توجد أحداث",
   "forgetPassword": "هل نسيت كلمة المرور؟",
   "login": "تسجيل الدخول",
   "dontHaveAccount": "ليس لديك حساب؟",

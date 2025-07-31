@@ -184,4 +184,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addEvent => 'إضافة الفعالية';
+
+  @override
+  String get notFoundEvent => 'لا توجد أحداث';
 }

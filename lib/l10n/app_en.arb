@@ -61,7 +61,8 @@
   "chooseTime": "Choose Time",
     "ocation" : "Location",
   "chooseEventLocation": "Choose Event Location",
-  "addEvent": "Add Event"
+  "addEvent": "Add Event",
+  "notFoundEvent": "No events found"
 }
 
  
