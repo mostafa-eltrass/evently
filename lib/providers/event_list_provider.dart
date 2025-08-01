@@ -1,3 +1,5 @@
+import 'package:evently/utils/App_Colors.dart';
+import 'package:evently/utils/toast_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:evently/model/event.dart';
 import 'package:evently/firebase_utils.dart';
@@ -8,6 +10,7 @@ class EventListProvider extends ChangeNotifier {
   List<Event> eventsList = [];
   List<Event> filterEventList = [];
   List<String> eventsNameList = [];
+  List<Event> favoriteEventList = [];
   int selectedIndex = 0;
 
   List<String> getEventNameList(BuildContext context) {
@@ -27,53 +30,84 @@ class EventListProvider extends ChangeNotifier {
 
   void getAllEvents() async {
     try {
-      // 📌 ← هنا التعديل: أضفنا try-catch للتعامل مع أي خطأ
       QuerySnapshot<Event> querySnapshot =
           await FirebaseUtils.getEventsCollection().get();
 
       eventsList = querySnapshot.docs
-          .map((doc) => doc.data()) // 📌 ← هنا التعديل: نحصل على كل حدث
-          .whereType<Event>() // 📌 ← هنا التعديل: نتأكد إن النوع Event فعلاً
-          .toList(); // 📌 ← هنا التعديل: نحولهم لقائمة
+          .map((doc) => doc.data())
+          .whereType<Event>()
+          .toList();
 
-      filterEventList = List<Event>.from(
-        eventsList,
-      ); 
+      filterEventList = List<Event>.from(eventsList);
       filterEventList.sort((event1, event2) {
         return event1.dateTime.compareTo(event2.dateTime);
-      });// 📌 ← هنا التعديل: نسخة لفلاتر
+      });
       notifyListeners();
     } catch (e, stack) {
-      // 📌 ← هنا التعديل: catch لإظهار الخطأ
-      debugPrint("❌ Error in getAllEvents: $e\n$stack"); // 📌 ← هنا التعديل
+      debugPrint("❌ Error in getAllEvents: $e\n$stack");
     }
   }
 
   void getFilterEvents() async {
     try {
-      // 📌 ← هنا التعديل
       QuerySnapshot<Event> querySnapshot =
-          await FirebaseUtils.getEventsCollection().get(); // COLLECTION
-      // COLLECTIONS
-      // DATA
-      // FILTER
+          await FirebaseUtils.getEventsCollection().get();
 
       eventsList = querySnapshot.docs
-          .map((doc) => doc.data()) // 📌 ← هنا التعديل
-          .whereType<Event>() // 📌 ← هنا التعديل      DATA
-          .toList(); // 📌 ← هنا التعديل
+          .map((doc) => doc.data())
+          .whereType<Event>()
+          .toList();
 
       filterEventList = eventsList.where((event) {
-        return event.eventName == eventsNameList[selectedIndex]; // FILTER
+        return event.eventName == eventsNameList[selectedIndex];
       }).toList();
 
-      notifyListeners();
       filterEventList.sort((event1, event2) {
         return event1.dateTime.compareTo(event2.dateTime);
       });
+
+      notifyListeners();
     } catch (e, stack) {
-      // 📌 ← هنا التعديل
-      debugPrint("❌ Error in getFilterEvents: $e\n$stack"); // 📌 ← هنا التعديل
+      debugPrint("❌ Error in getFilterEvents: $e\n$stack");
+    }
+  }
+
+  void updateIsFavorite(Event event) {
+    FirebaseUtils.getEventsCollection()
+        .doc(event.id)
+        .update({'isFavorite': !event.isFavorite})
+        .timeout(
+          const Duration(milliseconds: 500),
+          onTimeout: () {
+            ToastUtils.toastMsg(
+              msg: 'Event Update Sucsessfully',
+              backgroundColor: AppColors.primaryLight,
+              textColor: AppColors.whiteColor,
+            );
+          },
+        );
+    selectedIndex == 0 ? getAllEvents() : getFilterEvents();
+    getAllFavoriteEventList();
+    notifyListeners();
+  }
+
+  void getAllFavoriteEventList() async {
+    try {
+      var querySnapshot = await FirebaseUtils.getEventsCollection().get();
+
+      eventsList = querySnapshot.docs
+          .map((doc) => doc.data())
+          .whereType<Event>()
+          .toList();
+
+      favoriteEventList = eventsList.where((event) {
+        return (event.isFavorite ?? false) == true;
+      }).toList();
+
+      debugPrint("❤️ Favorite Events Count: ${favoriteEventList.length}");
+      notifyListeners();
+    } catch (e, stack) {
+      debugPrint("❌ Error in getAllFavoriteEventList: $e\n$stack");
     }
   }
 

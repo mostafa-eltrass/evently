@@ -1,16 +1,19 @@
 import 'package:evently/model/event.dart';
+import 'package:evently/providers/event_list_provider.dart';
 import 'package:evently/utils/app_assets.dart';
 import 'package:evently/utils/app_colors.dart';
 import 'package:evently/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class EventItem extends StatelessWidget {
   Event event;
-    EventItem({super.key, required this.event});
+  EventItem({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
+    var eventListProvider = Provider.of<EventListProvider>(context);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
@@ -21,7 +24,7 @@ class EventItem extends StatelessWidget {
         border: Border.all(color: AppColors.primaryLight),
         image: DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage( event.image),
+          image: AssetImage(event.image),
         ),
       ),
       child: Column(
@@ -43,8 +46,14 @@ class EventItem extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text(event.dateTime.day.toString(), style: AppStyles.bold20Primary),
-                Text( DateFormat('MMM').format(event.dateTime), style: AppStyles.bold14Primary),
+                Text(
+                  event.dateTime.day.toString(),
+                  style: AppStyles.bold20Primary,
+                ),
+                Text(
+                  DateFormat('MMM').format(event.dateTime),
+                  style: AppStyles.bold14Primary,
+                ),
               ],
             ),
           ),
@@ -66,14 +75,17 @@ class EventItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(
-                    event.title,
-                    style: AppStyles.bold14Primary,
-                  ),
+                  child: Text(event.title, style: AppStyles.bold14Primary),
                 ),
                 InkWell(
-                  onTap: () {},
-                  child: Image.asset(
+                  onTap: () {
+                    eventListProvider.updateIsFavorite(event);
+                  },
+                  child: event.isFavorite == true ? Image.asset(AppAssets.iconFavoriteSelected,
+                  color: AppColors.primaryLight,
+                  )
+                  :
+                   Image.asset(
                     AppAssets.iconFavorite,
                     color: AppColors.primaryLight,
                   ),
