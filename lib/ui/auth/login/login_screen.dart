@@ -4,6 +4,8 @@ import 'package:evently/utils/app_colors.dart';
 import 'package:evently/utils/app_assets.dart';
 import 'package:evently/utils/app_routes.dart';
 import 'package:evently/utils/app_styles.dart';
+import 'package:evently/utils/dialog_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:evently/gen_l10n/app_localizations.dart';
 
@@ -15,8 +17,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController(text: 'mostafa@email.com');
-  TextEditingController passWordController = TextEditingController(text: '123456');
+  TextEditingController emailController = TextEditingController(
+    text: 'mostafa@email.com',
+  );
+  TextEditingController passWordController = TextEditingController(
+    text: '123456',
+  );
   var formKey = GlobalKey<FormState>();
 
   bool _obscurePassword = true; // إخفاء كلمة المرور بشكل افتراضي
@@ -117,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomElevatedButton(
                       onPressed: () {
                         login();
-                        
                       },
                       text: AppLocalizations.of(context)!.login,
                     ),
@@ -186,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       icon: true,
                       iconImage: Image.asset(AppAssets.iconGoogal),
-                    
+
                       text: AppLocalizations.of(context)!.loginWithGoogle,
                       textStyle: AppStyles.medium16Primary,
                       backgrounColor: AppColors.transparentColor,
@@ -201,12 +206,61 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void login() {
+  void login() async {
     if (formKey.currentState?.validate() == true) {
+      DialogUtils.ShowLoading(context: context, loadingText: 'Wating....');
       // Proceed to login
-      print("Logging in...");
-      Navigator.of(context,
-     ).pushReplacementNamed(AppRoutes.homeRouteName);
+      try {
+        final credential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+              email: emailController.text,
+              password: passWordController.text,
+            );
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(
+          context: context,
+          message: 'Login sucsessfully',
+          title: 'sucsessfully',
+          posActionName: 'OK',
+          posAction: () {
+            Navigator.of(context).pushReplacementNamed(AppRoutes.homeRouteName);
+          },
+        );
+      } on FirebaseAuthException catch (e) {
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(
+          context: context,
+          message: 'No user found for that email.',
+          title: 'Erorr',
+          posActionName: 'OK',
+        );
+
+        if (e.code == 'network-request-failed') {
+          DialogUtils.hideLoading(context: context);
+          DialogUtils.showMessage(
+            context: context,
+            message: 'Wrong password provided for that user.',
+            title: 'Erorr',
+            posActionName: 'OK',
+          );
+        } else if (e.code == 'invalid-credential') {
+          DialogUtils.hideLoading(context: context);
+          DialogUtils.showMessage(
+            context: context,
+            message: 'uncorrected credential',
+            title: 'Erorr',
+            posActionName: 'OK',
+          );
+        }
+      } catch (e) {
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(
+          context: context,
+          message: e.toString(),
+          title: 'Erorr',
+          posActionName: 'OK',
+        );
+      }
     }
   }
 }

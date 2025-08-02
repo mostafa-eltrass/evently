@@ -4,6 +4,8 @@ import 'package:evently/utils/app_colors.dart';
 import 'package:evently/utils/app_assets.dart';
 import 'package:evently/utils/app_routes.dart';
 import 'package:evently/utils/app_styles.dart';
+import 'package:evently/utils/dialog_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:evently/gen_l10n/app_localizations.dart';
 
@@ -15,10 +17,16 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<RegisterScreen> {
-  TextEditingController emailController = TextEditingController(text: 'mostafa@email.com');
+  TextEditingController emailController = TextEditingController(
+    text: 'mostafa@email.com',
+  );
   TextEditingController nameController = TextEditingController(text: 'mostafa');
-  TextEditingController passWordController = TextEditingController(text: '123456');
-  TextEditingController repassWordController = TextEditingController(text: '123456');
+  TextEditingController passWordController = TextEditingController(
+    text: '123456',
+  );
+  TextEditingController repassWordController = TextEditingController(
+    text: '123456',
+  );
   var formKey = GlobalKey<FormState>();
 
   bool _obscurePassword = true; // إخفاء كلمة المرور بشكل افتراضي
@@ -154,7 +162,6 @@ class _LoginScreenState extends State<RegisterScreen> {
                     CustomElevatedButton(
                       onPressed: () {
                         register();
-                        
                       },
                       text: AppLocalizations.of(context)!.createAccount,
                     ),
@@ -198,12 +205,60 @@ class _LoginScreenState extends State<RegisterScreen> {
     );
   }
 
-  void register() {
+  void register() async {
     if (formKey.currentState?.validate() == true) {
       // Proceed to register
-      print("Logging in...");
-      Navigator.of(context
-    ).pushReplacementNamed(AppRoutes.homeRouteName);
+      DialogUtils.ShowLoading(context: context, loadingText: 'Loading');
+      try {
+        final credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: emailController.text,
+              password: passWordController.text,
+            );
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(
+          context: context,
+          message: 'Register sucsessfully ',
+          title: 'Sucsessfully',
+          posActionName: 'OK',
+          posAction: () {
+            Navigator.pushReplacementNamed(context, AppRoutes.homeRouteName);
+          },
+        );
+      } on FirebaseAuthException catch (e) {
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(
+          context: context,
+          message: 'The password provided is too weak. ',
+          title: 'Erorr',
+          posActionName: 'OK',
+        );
+
+        if (e.code == 'weak-password') {
+        } else if (e.code == 'email-already-in-use') {
+          DialogUtils.hideLoading(context: context);
+          DialogUtils.showMessage(
+            context: context,
+            message: 'The account already exists for that email. ',
+            title: 'Erorr',
+          posActionName: 'OK',
+          );
+        } else if (e.code == 'network-request-failed') {
+          DialogUtils.hideLoading(context: context);
+          DialogUtils.showMessage(
+            context: context,
+            message: 'Wrong password provided for that user.',
+            title: 'Erorr',
+            posActionName: 'OK',
+          );
+        } 
+      } catch (e) {
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(context: context, message: e.toString(),
+        title: 'Erorr',
+          posActionName: 'OK',
+        );
+      }
     }
   }
 }
